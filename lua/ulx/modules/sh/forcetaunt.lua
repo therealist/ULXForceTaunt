@@ -1,7 +1,9 @@
 function ulx.forcetaunt( calling_ply, target_plys, taunt )
 
 	for k,v in pairs (target_plys) do
-	
+		
+	if v:Alive() then 
+		
 		if v:Team() == TEAM_PROPS then
 			random_taunt = table.Random(PROP_TAUNTS)
 			v:EmitSound(random_taunt, 100)
@@ -9,6 +11,12 @@ function ulx.forcetaunt( calling_ply, target_plys, taunt )
 			random_taunt = table.Random(HUNTER_TAUNTS)
 			v:EmitSound(random_taunt, 100)
 		end
+		
+	else 
+	
+	ULib.tsayError( calling_ply, "This player is dead or spectating." )
+	
+	end
 		
 	end
 	
